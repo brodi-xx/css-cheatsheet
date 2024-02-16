@@ -1,0 +1,45 @@
+/* color scheme sourced from http://khroma.co/generator/ */
+:root {
+  --outer-space: #33393f;
+  --bermuda: #71D9AA;
+  --mulled: #4B4069;
+  --card-background: linear-gradient(rgb(117, 203, 177), rgb(101, 159, 154), rgb(84, 117, 131), rgb(66, 78, 108), rgb(45, 40, 86));
+
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+  Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+
+  font-size: 1.75rem;
+  line-height: 1.5;
+  color: var(--mulled);
+  background-color: var(--outer-space);
+}
+
+.title {
+  color: var(--bermuda);
+}
+
+html {
+  font-size: 62.5%;
+}
+
+.card {
+  background: var(--card-background);
+  padding: 1rem;
+  border: 1px solid #777;
+  border-radius: .25 rem;
+
+}
+
+.card-header {
+  font-size: 2.5rem;
+  margin-bottom: .5rem;
+  color: var(--outer-space)
+}
+
+.card:hover,
+.card:hover .card-header {
+  box-shadow: inset 0px 0px 8px var(--mulled), 0 0 15px var(--mulled);
+}

@@ -25,18 +25,39 @@ html {
   font-size: 62.5%;
 }
 
-.card {
-  background: var(--card-background);
-  padding: 1rem;
-  border: 1px solid #777;
-  border-radius: .25 rem;
+/* Parent Grid, margins are negative to offset padding on .card-column class */
 
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin-left: -1.5rem;
+  margin-right: -1.5rem;
 }
+
+.justify-center {
+  justify-content: center;
+}
+
 
 .card-header {
   font-size: 2.5rem;
   margin-bottom: .5rem;
   color: var(--outer-space)
+}
+
+.code-card {
+  background: var(--card-background);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 100%;
+  padding: 2rem;
+  color: var(--mulled);
+/* Outline acts as the border */
+  outline: 2px dashed var(--bermuda);
+  outline-offset: -2px;
+  transition: all 0.5s ease-in-out;
 }
 
 .card:hover,

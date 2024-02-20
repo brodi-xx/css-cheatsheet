@@ -18,13 +18,24 @@ rel="stylesheet">
     </h1>
 </header>
 <main>
-    <div class="card">
-    <div class="card-header">Title #1</div>
-    <div class="card-body">
-    Lorem   dolor sit amet consectetur adipisicing elit. Incidunt deleniti neque mollitia consequatur numquam totam delectus voluptas explicabo id ipsum?
-</div>
-</div>
-
+    <section class="row justify-center">
+        <div class="card-column">
+          <figure class="card code-card">
+            <h2 class="card-header">Flexbox Row</h2>
+            <div class="card-body">
+              <p>Use these three properties to create a Flexbox row layout.</p>
+            </div>
+            <!-- with the <pre> element, it counts all spaces literally, so proper code cant be applied in this -->
+            <pre class="code-block"><code>
+    .row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }</code>
+            </pre>
+          </figure>
+        </div>
+    </section>
 </main>
 </body>
 </html>

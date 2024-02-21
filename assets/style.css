@@ -1,10 +1,20 @@
 /* color scheme sourced from http://khroma.co/generator/ */
 :root {
   --outer-space: #33393f;
-  --bermuda: #71D9AA;
-  --mulled: #4B4069;
-  --card-background: linear-gradient(rgb(117, 203, 177), rgb(101, 159, 154), rgb(84, 117, 131), rgb(66, 78, 108), rgb(45, 40, 86));
+  --peach: #FFDAB9;
+  --gin: #e0eae4;
+  --tea: #BEE9B4;
+}
 
+/* set content highlight color and background */
+::selection {
+  background-color: var(--peach);
+  color: var(--outer-space);
+}
+
+html {
+  /* I've set 1rem to 10px instead of native 16px to make it easier to calculate font-size values for the rest of the page (e.g. 1.6rem is 16px, 2.0rem is 20px, etc.) */
+  font-size: 62.5%;
 }
 
 body {
@@ -13,16 +23,78 @@ body {
 
   font-size: 1.75rem;
   line-height: 1.5;
-  color: var(--mulled);
+  color: var(--gin);
   background-color: var(--outer-space);
 }
 
-.title {
-  color: var(--bermuda);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 0.625rem;
+  color: var(--tea);
+  font-weight: 700;
+  line-height: 1.1;
 }
 
-html {
-  font-size: 62.5%;
+h1 {
+  font-size: 4rem;
+}
+
+h2 {
+  font-size: 3.5rem;
+}
+
+h3 {
+  font-size: 3rem;
+}
+
+h4 {
+  font-size: 2.5rem;
+}
+
+h5 {
+  font-size: 2rem;
+}
+
+h6 {
+  font-size: 1.5rem;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+code {
+  /* Monospace font stack is used for our code blocks to make it look more like code */
+  font-family: Consolas, 'Andale Mono WT', 'Andale Mono', 'Lucida Console',
+    'Lucida Sans Typewriter', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono',
+    'Liberation Mono', 'Nimbus Mono L', Monaco, 'Courier New', Courier,
+    monospace;
+}
+
+header {
+  width: 96%;
+  margin: 0 auto;
+  padding: 2.5rem;
+  text-align: center;
+}
+
+header h1.page-title {
+  padding: 1rem 1.2rem;
+  font-size: 4.5rem;
+}
+
+main {
+  width: 96%;
+  margin: 2rem auto;
+}
+
+footer {
+  margin: 1.5rem;
+  text-align: center;
 }
 
 /* Parent Grid, margins are negative to offset padding on .card-column class */
@@ -39,11 +111,13 @@ html {
   justify-content: center;
 }
 
-
-.card-header {
-  font-size: 2.5rem;
-  margin-bottom: .5rem;
-  color: var(--outer-space)
+/* mobile-first approach, set base column width to be 100% and will update it using media queries for larger screen sizes */
+.card-column {
+  flex: 1 0 100%;
+  padding: 1.5rem;
+  /* when the screen resizes, make it so our columns don't jump in size */
+  transition: flex-basis 500ms linear;
+  margin-bottom: 1.5rem;
 }
 
 .code-card {
@@ -53,16 +127,28 @@ html {
   justify-content: flex-start;
   min-height: 100%;
   padding: 2rem;
-  color: var(--mulled);
+  color: var(--tea);
 /* Outline acts as the border */
-  outline: 2px dashed var(--bermuda);
+  outline: 2px dashed var(--gin);
   outline-offset: -2px;
+  transition: all 0.5s ease-in-out;
+}
+
+.code-card .card-header {
+  /* used position and negative margins to move title of card over the card's outline and create an overlap effect */
+  position: relative;
+  margin: -4rem 0 1.5rem 0;
+  padding: 0.5rem 1rem;
+  background-color: var(--outer-space);
+  color: var(--tea);
+  border: 2px solid var(--gin);
+  border-radius: 8px;
   transition: all 0.5s ease-in-out;
 }
 
 .card:hover,
 .card:hover .card-header {
-  box-shadow: inset 0px 0px 8px var(--mulled), 0 0 15px var(--mulled);
+  box-shadow: inset 0px 0px 8px var(--tea), 0 0 15px var(--tea);
 }
 
 /* allows them to grow equally to fill the container horizontally. As a result, each card will have the same height, matching the height of the tallest card*/
@@ -80,9 +166,7 @@ html {
   border-radius: 8px;
   /* use linear-gradient() function to create a fading background  */
   background-image: linear-gradient(
-    rgba(232, 102, 236, 0.3) 0%,
-    rgba(232, 102, 236, 0.6) 100%
-  );
+    rgb(63, 155, 134), rgb(99, 174, 145), rgb(130, 193, 157), rgb(160, 213, 168), rgb(190, 233, 180));
   display: flex;
   align-items: center;
 }
@@ -90,4 +174,30 @@ html {
 /* on <pre> click, select all contents so the code is highlighted */
 .code-card pre:active {
   user-select: all;
+}
+
+/* Mobile-first prioritization, use `min-width` values going from narrow -> wide for a responsive design */
+@media screen and (min-width: 768px) {
+  /* on tablets, set columns to only be 50% of the width and not grow */
+  .card-column {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  /* select the last child to grow to full width if it has space to grow */
+  .card-column:last-child {
+    flex-grow: 1;
+  }
+}
+
+/* media query for larger screens */
+@media screen and (min-width: 992px) {
+  header {
+    width: 75%;
+  }
+
+  .card-column {
+    flex: 0 0 33.333%;
+    max-width: 33.333%;
+  }
 }
